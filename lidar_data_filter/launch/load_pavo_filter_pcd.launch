@@ -1,0 +1,15 @@
+<launch>
+
+  <arg name="filter" default="1" />
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find pavo_ros)/rviz/pavo_scan.rviz" />
+  <node name="PavoScanNode" pkg="pavo_ros" type="pavo_scan_node" output="screen" >
+  <param name="parking_x" type="int" value="$(arg filter)" />
+  </node>
+
+  <node pkg="lidar_data_filter" type="get_lidar_scan" name="get_lidar_scan" output="screen" />
+
+  <node pkg="lidar_data_filter" type="scan2pcd" name="scan2pcd" output="screen" />
+
+  <!--<node pkg="lidar_data_filter" type="cloud_segment" name="cloud_segment" output="screen" />-->
+
+</launch>

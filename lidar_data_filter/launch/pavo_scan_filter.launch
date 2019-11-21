@@ -1,0 +1,11 @@
+<launch>
+
+  <node pkg="lidar_data_filter" type="get_lidar_scan" name="get_lidar_scan" output="screen" />
+  
+  <node pkg="laser_filters" type="scan_to_scan_filter_chain" name="pavo_scan_filter" output="screen">
+    <rosparam command="load" file="$(find lidar_data_filter)/launch/pavo_scan_filter_config.yaml" />
+    <remap from="scan" to="filtered_output" />
+    <remap from="scan_filtered" to="pavo_scan_filter" />
+  </node>
+
+</launch>

@@ -1,0 +1,10 @@
+<launch>
+    <include file="$(find sick_scan)/launch/sick_tim_5xx.launch"/>
+
+    <node pkg="laser_scan_base" type="get_sick_scan" name="get_sick_scan" output="screen" />
+
+    <node pkg="laser_scan_base" type="sick_scan2pcd" name="sick_scan2pcd" output="screen" />
+
+    <!--<node pkg="laser_scan_base" type="pcd_sac_segmentation" name="pcd_sac_segmentation" />-->
+
+</launch>
